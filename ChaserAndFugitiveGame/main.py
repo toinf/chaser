@@ -8,27 +8,34 @@ import error
 
 world.World.chaserList.append(world.Chaser())
 gamer = world.World.chaserList[0]
+lastMessage = ""
+
 while True:
-    print("time: " + str(world.World.time))
+    print("time: {0}".format(world.World.time))
     if world.World.time % 5 == 0:
         world.World.fugitiveList.append(world.Fugitive())
-    event.Event.printIfFugitiveCatched()
+    else:
+        print()
+    message = event.Event.printIfFugitiveCatched()
+    if message: 
+        lastMessage = message
     event.Event.printIfAllFugitiveCatched()
+    print(lastMessage) 
 
-    print('- ' * 11)
+    print('- ' * 12)
     for i in range(0, 20):
         print("|", end = '')
         for m in world.World.map[i]:
             print(m, end = '')
         print("|")
-    print('-' * 22)
+        
+    print('- ' * 12)
     print()
-
-    print('-' * 22)
+    print('- ' * 12)
+    
     time.sleep(0.5)
     world.World.time = world.World.time + 1
 
-    # piece of move function(handling map). I coded this instead of participants
     gamer.pastY = gamer.y
     gamer.pastX = gamer.x
     world.World.map[gamer.y][gamer.x] = ' '
