@@ -33,9 +33,10 @@ while True:
     gamer.pastX = gamer.x
     world.World.map[gamer.y][gamer.x] = ' '
     gamer.move()
-    world.World.map[gamer.y][gamer.x] = 'C'
     error.OutOfMapError.check(gamer)
     error.TooFastMoveError.check(gamer)
+    world.World.map[gamer.y][gamer.x] = 'C'
+
     
     for f in world.World.fugitiveList:
         f.move()
