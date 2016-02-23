@@ -5,5 +5,7 @@ python3으로 작성합니다.
 
 현재 필요한 작업: 
 
-1. World 등의 클래스를 static에서 instance 형태로 변환해야합니다.
-2. Exception을 좀 더 알아보기 쉽게 고쳐야합니다.
+1. 여러 가지 Fugutive 만들기
+2. 잘 작동하는지 확인하기
+3. World 등의 클래스를 static에서 instance 형태로 변환 (선택 사항)
+4. 코드 알아보기 쉽게 고치기
