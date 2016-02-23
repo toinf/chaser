@@ -1,4 +1,5 @@
 #error.py
+
 import sys
 import re
 import world

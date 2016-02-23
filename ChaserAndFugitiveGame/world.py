@@ -1,4 +1,5 @@
 #world.py
+
 import random
 import sys
 import event

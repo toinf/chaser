@@ -1,4 +1,5 @@
-#main
+#main.py
+
 import time
 import sys
 import world
