@@ -17,14 +17,18 @@ while True:
     print("Time Enlapsed: {0}\n".format(world.World.time))
     
     if world.World.time % 5 == 0:
-        world.World.fugitiveList.append(world.Fugitive())
+        message = event.Event.printNewCharacter("Fugitive", world.World.addFugitive())
+        lastMessage = message
+        print(lastMessage + " <<< ")
     else:
-        print()
+        print(lastMessage)
+
+    print("")
+    
     message = event.Event.printIfFugitiveCatched()
     if message: 
-        lastMessage = message
-    event.Event.printIfAllFugitiveCatched()
-    print(lastMessage) 
+        print("\n\n{}\n\n".format(message))
+        exit()    
 
     print('- ' * 12)
     
@@ -35,8 +39,7 @@ while True:
         print("|")
         
     print('- ' * 12)
-    print()
-    print('- ' * 12)
+    print("\n\n")
     
     time.sleep(0.5)
     world.World.time = world.World.time + 1
