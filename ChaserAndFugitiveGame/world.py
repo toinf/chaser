@@ -39,7 +39,7 @@ class Character:
     def __del__(self):
         Character.count = Character.count - 1
     def move(self):
-        print("Wrong move: character not declared")
+        raise Exception("Wrong move: character not declared")
 
 class Fugitive(Character):
     shape = 'F'
