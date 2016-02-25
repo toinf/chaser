@@ -27,7 +27,8 @@ while True:
     print(lastMessage) 
 
     print('- ' * 12)
-    for i in range(0, 20):
+    
+    for i in range(21):
         print("|", end = '')
         for m in world.World.map[i]:
             print(m, end = '')
