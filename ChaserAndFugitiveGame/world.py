@@ -11,6 +11,11 @@ class World:
     chaserList = []
     map = [[' ' for i in range(21)] for j in range(21)]
     
+    def addFugitive():
+        f = Fugitive()
+        World.fugitiveList.append(f)
+        return f.number
+    
     def _init_(self):
         pass
 
