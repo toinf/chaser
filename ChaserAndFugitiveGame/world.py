@@ -107,7 +107,7 @@ class Chaser(Character):
     def __del__(self):
         super()
     def move(self):
-        #Your code hear!!
+        #Your code here!
         #
         #
         self.x = self.x + 1
