@@ -5,7 +5,7 @@ import world
 class Event:
     pastFugitiveCount = 0
     def printNewCharacter(name, number):
-        print("{0}{1} occured at time {2}".format(name, number, world.World.time))
+        return "{0} {1} occured at time {2}".format(name, number, world.World.time)
         
     def printIfFugitiveCatched():
         for f in world.World.fugitiveList:
@@ -16,7 +16,6 @@ class Event:
                 
     def printIfAllFugitiveCatched():
         if world.Fugitive.count == 0 and Event.pastFugitiveCount != 0:
-            print("time: " + str(world.World.time) + ", cleard")
-            exit()
+            return "All fugitives are cleared at time {}".format(world.World.time)
         Event.pastFugitiveCount = world.Fugitive.count
         
