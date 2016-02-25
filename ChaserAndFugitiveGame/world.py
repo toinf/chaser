@@ -49,7 +49,7 @@ class Fugitive(Character):
         self.number = Fugitive.count
         Fugitive.count = Fugitive.count + 1
         World.map[self.y][self.x] = Fugitive.shape
-        event.Event.printNewCharacter("Fugitive", self.number)
+        
     def __del__(self):
         super().__del__()
 
