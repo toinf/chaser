@@ -5,13 +5,17 @@ import sys
 import world
 import event
 import error
+import os
 
 world.World.chaserList.append(world.Chaser())
 gamer = world.World.chaserList[0]
 lastMessage = ""
 
 while True:
-    print("time: {0}".format(world.World.time))
+    os.system('cls')
+    
+    print("Time Enlapsed: {0}\n".format(world.World.time))
+    
     if world.World.time % 5 == 0:
         world.World.fugitiveList.append(world.Fugitive())
     else:
