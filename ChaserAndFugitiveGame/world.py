@@ -73,30 +73,29 @@ class Fugitive(Character):
     """def move(self):
         self.pastY = self.y
         self.pastX = self.x
-        World.map[self.y][self.x] = ' '
-        if abs(World.chaserList[0].y - self.y) + abs(World.chaserList[0].x - self.x) > 5:
-            while True:
-                tempX = random.randint(-1, 1)
-                if tempX == 0:
-                    tempY = random.randint(-1, 1)
-                else:
-                    tempY = 0
-                if (self.x + tempX) > -1 and (self.x + tempX) < 21:
-                    if (self.y + tempY) > -1 and (self.y + tempY) < 21:
-                        if World.map[self.y + tempY][self.x + tempX] == ' ':
-                            self.y = self.y + tempY
-                            self.x = self.x + tempX
-                            break
+        World.map[self.y][self.x] = ' ' # Are you sure?
+        chaser = World.chaserList[0]
+        if abs(chaser.y - self.y) + abs(chaser.x - self.x) > 5:
+            tempX = random.randint(-1, 1)
+            if tempX == 0:
+                tempY = random.randint(-1, 1)
+            else:
+                tempY = 0
+            nx = self.x + tempX
+            ny = self.y + tempY
+            if 0 <= nx <= 20 and 0 <= ny <= 20 and World.map[ny][nx] == ' ':
+                self.y = ny
+                self.x = nx
         else:
-            if World.chaserList[0].y > self.y and self.y != 0:
+            if chaser.y > self.y and self.y != 0:
                 self.y = self.y - 1
-            elif World.chaserList[0].y < self.y and self.y != 20:
+            elif chaser.y < self.y and self.y != 20:
                 self.y = self.y + 1
-            elif World.chaserList[0].x > self.x and self.x != 0:
+            elif chaser.x > self.x and self.x != 0:
                 self.x = self.x - 1
-            elif World.chaserList[0].x < self.x and self.x != 20:
+            elif chaser.x < self.x and self.x != 20:
                 self.x = self.x + 1
-        World.map[self.y][self.x] = Fugitive.shape"""
+        World.map[self.y][self.x] = Fugitive.shape
 
 class Chaser(Character):
     shape = 'C'
