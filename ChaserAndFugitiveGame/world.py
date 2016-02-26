@@ -5,6 +5,10 @@ import sys
 import event
 import error
 
+def getList() {
+    return world.World.fugitiveList
+}
+
 def getMap(x, y):
     if 0 <= x <= 20 and 0 <= y <= 20:
         return World.map[y][x]

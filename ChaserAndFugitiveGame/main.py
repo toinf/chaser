@@ -47,7 +47,7 @@ while True:
     print('- ' * 12)
     print("\n\n")
     
-    time.sleep(0.2)
+    time.sleep(0.9)
     world.World.time = world.World.time + 1
 
     gamer.pastY = gamer.y

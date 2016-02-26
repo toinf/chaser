@@ -14,6 +14,7 @@ class Event:
             if world.Chaser.x == f.x and world.Chaser.y == f.y:
                 message = "{0}{1} catched at time {2}".format(f.name, f.number, world.World.time)
                 del world.World.fugitiveList[i]
+                world.World.map[world.Chaser.y][world.Chaser.x] = 'C'
                 return message
                 
     def printIfAllFugitiveCatched():
