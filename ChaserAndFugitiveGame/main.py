@@ -18,7 +18,7 @@ while True:
     
     lastMessage = newMessage
     
-    if world.World.time % 5 == 0:
+    if world.World.time % 10 == 0:
         newMessage = event.Event.printNewCharacter("Fugitive", world.World.addFugitive())
     message = event.Event.printIfFugitiveCatched()
     if message:
