@@ -8,10 +8,12 @@ class Event:
         return "{0} {1} occured at time {2}".format(name, number, world.World.time)
         
     def printIfFugitiveCatched():
-        for f in world.World.fugitiveList:
+        for i in range(len(world.World.fugitiveList)):
+            l = world.World.fugitiveList
+            f = l[i]
             if world.Chaser.x == f.x and world.Chaser.y == f.y:
                 message = "{0}{1} catched at time {2}".format(f.name, f.number, world.World.time)
-                world.World.fugitiveList.pop(f)
+                del world.World.fugitiveList[i]
                 return message
                 
     def printIfAllFugitiveCatched():

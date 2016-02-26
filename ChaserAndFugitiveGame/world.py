@@ -5,6 +5,11 @@ import sys
 import event
 import error
 
+def getMap(x, y):
+    if 0 <= x <= 20 and 0 <= y <= 20:
+        return World.map[y][x]
+    else:
+        raise error.OutOfMapError(y, x)
 class World:
     time = 0
     fugitiveList = []
@@ -52,25 +57,24 @@ class Fugitive(Character):
         
     def __del__(self):
         super().__del__()
-
+    
     def move(self):
-        while True:
-            tempX = random.randint(-1, 1)
-            if tempX == 0:
-                tempY = random.randint(-1, 1)
-            else:
-                tempY = 0
-            if (self.x + tempX) > -1 and (self.x + tempX) < 21:
-                if (self.y + tempY) > -1 and (self.y + tempY) < 21:
-                    if World.map[self.y + tempY][self.x + tempX] == ' ':
-                        self.pastY = self.y
-                        self.pastX = self.x
-                        World.map[self.y][self.x] = ' '
-                        self.y = self.y + tempY
-                        self.x = self.x + tempX
-                        World.map[self.y][self.x] = Fugitive.shape
-                        break
-    """def move(self):
+        tempX = random.randint(-1, 1)
+        if tempX == 0:
+            tempY = random.randint(-1, 1)
+        else:
+            tempY = 0
+        if (self.x + tempX) > -1 and (self.x + tempX) < 21:
+            if (self.y + tempY) > -1 and (self.y + tempY) < 21:
+                if World.map[self.y + tempY][self.x + tempX] == ' ':
+                    self.pastY = self.y
+                    self.pastX = self.x
+                    World.map[self.y][self.x] = ' '
+                    self.y = self.y + tempY
+                    self.x = self.x + tempX
+                    World.map[self.y][self.x] = Fugitive.shape
+                        
+    def move2(self):
         self.pastY = self.y
         self.pastX = self.x
         World.map[self.y][self.x] = ' ' # Are you sure?
@@ -110,8 +114,30 @@ class Chaser(Character):
         event.Event.printNewCharacter("Chaser", Chaser.number)
     def __del__(self):
         super()
+        
     def move(self):
-        #Your code here!
-        #
-        #
-        self.x = self.x + 1
+        def inRange(x, y):
+            return 0 <= x <= 20 and 0 <= y <= 20
+        dx = [0, 0, 1, -1]
+        dy = [1, -1, 0, 0]
+        
+        for i in range(4):
+            nx = self.x + dx[i]
+            ny = self.y + dy[i]
+            if inRange(nx, ny):
+                c = getMap(ny, nx)
+                if c == 'C':
+                    self.x = nx
+                    self.y = ny
+                    return
+        
+        if self.x % 2 == 1:
+            if self.x != 20:
+                self.x += 1
+            elif self.x != 0:
+                self.x -= 1
+        else:
+            if self.y != 20:
+                self.y += 1
+            elif self.y != 0:
+                self.y -= 1

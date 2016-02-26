@@ -9,23 +9,29 @@ import os
 
 world.World.chaserList.append(world.Chaser())
 gamer = world.World.chaserList[0]
-lastMessage = ""
+newMessage = ""
 
 while True:
     os.system('cls')
     
     print("Time Enlapsed: {0}\n".format(world.World.time))
     
+    lastMessage = newMessage
+    
     if world.World.time % 5 == 0:
-        message = event.Event.printNewCharacter("Fugitive", world.World.addFugitive())
-        lastMessage = message
-        print(lastMessage + " <<< ")
+        newMessage = event.Event.printNewCharacter("Fugitive", world.World.addFugitive())
+    message = event.Event.printIfFugitiveCatched()
+    if message:
+        newMessage = message
+    
+    if newMessage != lastMessage:
+        print(newMessage + " <<< ")
     else:
-        print(lastMessage)
+        print(newMessage)
 
     print("")
     
-    message = event.Event.printIfFugitiveCatched()
+    message = event.Event.printIfAllFugitiveCatched()
     if message: 
         print("\n\n{}\n\n".format(message))
         exit()    
@@ -41,13 +47,19 @@ while True:
     print('- ' * 12)
     print("\n\n")
     
-    time.sleep(0.5)
+    time.sleep(0.2)
     world.World.time = world.World.time + 1
 
     gamer.pastY = gamer.y
     gamer.pastX = gamer.x
     world.World.map[gamer.y][gamer.x] = ' '
-    gamer.move()
+    try:
+        gamer.move()
+    except error.OutOfMapError as e:
+        print("\n\nERROR: [ cannot access out of map range ]")
+        print("Error coordinate: ({0}, {1})".format(e.valueX, e.valueY))
+        exit()
+    world.Chaser.x = gamer.x
     error.OutOfMapError.check(gamer)
     error.TooFastMoveError.check(gamer)
     world.World.map[gamer.y][gamer.x] = 'C'

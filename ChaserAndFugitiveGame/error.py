@@ -17,7 +17,7 @@ class OutOfMapError(Error):
             sys.exit()
     def __init__(self, valueY, valueX):
         self.valueY = valueY
-        self.valueX = valueX
+        self.valueX = valueX     
 
 class TooFastMoveError(Error):
     message = "TooFastMoveError"
