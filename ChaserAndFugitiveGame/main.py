@@ -59,6 +59,7 @@ while True:
         print("\n\nERROR: [ cannot access out of map range ]")
         print("Error coordinate: ({0}, {1})".format(e.valueX, e.valueY))
         exit()
+        
     world.Chaser.x = gamer.x
     world.Chaser.y = gamer.y
     error.OutOfMapError.check(gamer)

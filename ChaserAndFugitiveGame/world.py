@@ -5,9 +5,8 @@ import sys
 import event
 import error
 
-def getList() {
-    return world.World.fugitiveList
-}
+def getList():
+    return World.fugitiveList
 
 def getMap(x, y):
     if 0 <= x <= 20 and 0 <= y <= 20:
@@ -68,15 +67,15 @@ class Fugitive(Character):
             tempY = random.randint(-1, 1)
         else:
             tempY = 0
-        if (self.x + tempX) > -1 and (self.x + tempX) < 21:
-            if (self.y + tempY) > -1 and (self.y + tempY) < 21:
-                if World.map[self.y + tempY][self.x + tempX] == ' ':
+        nx = self.x + tempX
+        ny = self.y + tempY
+        if 0 <= nx <= 20:
+            if 0 <= ny <= 20:
+                if World.map[ny][nx] == ' ':
                     self.pastY = self.y
                     self.pastX = self.x
-                    World.map[self.y][self.x] = ' '
-                    self.y = self.y + tempY
-                    self.x = self.x + tempX
-                    World.map[self.y][self.x] = Fugitive.shape
+                    World.map[self.paxY][self.pastX] = ' '
+                    World.map[ny][nx] = Fugitive.shape
                         
     def move2(self):
         self.pastY = self.y
@@ -124,16 +123,6 @@ class Chaser(Character):
             return 0 <= x <= 20 and 0 <= y <= 20
         dx = [0, 0, 1, -1]
         dy = [1, -1, 0, 0]
-        
-        for i in range(4):
-            nx = self.x + dx[i]
-            ny = self.y + dy[i]
-            if inRange(nx, ny):
-                c = getMap(ny, nx)
-                if c == 'C':
-                    self.x = nx
-                    self.y = ny
-                    return
         
         if self.x % 2 == 1:
             if self.x != 20:
